@@ -4,7 +4,9 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-    <div></div>
+    <div>
+        <h1>register</h1>
+    </div>
 
     <RouterView />
 </template>
