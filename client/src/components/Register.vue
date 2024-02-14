@@ -23,7 +23,7 @@
                     <br />
                     <div class="error" v-html="error"></div>
                     <br />
-                    <button @click="register">Register</button>
+                    <v-btn class="cyan" @click="register">Register</v-btn>
                 </div>
             </div>
         </div>
