@@ -15,7 +15,9 @@
     "axios": "^1.6.7",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
-    "vuetify": "^3.5.4"
+    "vuetify": "^3.5.4",
+    "vuex": "^4.1.0",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "@nightwatch/vue": "^3.1.0",
