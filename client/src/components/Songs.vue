@@ -2,7 +2,7 @@
     <v-layout column>
         <div d-flex xs6 offset-xs3 class="wrapper">
             <panel title="Songs">
-                <div v-for="song in songs" :key="song.title">
+                <div v-for="song in songs" :key="song.id">
                     {{ song.title }} - {{ song.artist }} -
                     {{ song.album }}
                 </div>
@@ -13,21 +13,20 @@
 
 <script>
 import Panel from "@/components/Panel.vue";
+import SongsService from "@/services/SongsService";
 
 export default {
-    data() {
-        return {
-            songs: [
-                {
-                    title: "feel no ways",
-                    artist: "drake",
-                    album: "views",
-                },
-            ],
-        };
-    },
     components: {
         Panel,
+    },
+    data() {
+        return {
+            songs: null,
+        };
+    },
+    async mounted() {
+        // TODO: request to backend for all songs
+        this.songs = (await SongsService.index()).data;
     },
 };
 </script>
