@@ -8,11 +8,6 @@ module.exports = (app) => {
             message: "Status 👍🏻",
         });
     });
-    app.get("/register", (req, res) => {
-        res.send({
-            message: "register GET working",
-        });
-    });
     app.post(
         "/register",
         AuthenticationControllerPolicy.register,
