@@ -3,6 +3,7 @@ import Register from "@/components/Register.vue";
 import Login from "@/components/Login.vue";
 import Hello from "@/components/Hello.vue";
 import Songs from "@/components/Songs.vue";
+import CreateSongs from "@/components/CreateSongs.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
             path: "/songs",
             name: "songs",
             component: Songs,
+        },
+        {
+            path: "/songs/create",
+            name: "songs-create",
+            component: CreateSongs,
         },
     ],
 });
