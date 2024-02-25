@@ -2,21 +2,52 @@
     <div class="wrapper">
         <div class="inputFieldsLeft">
             <panel title="Song Metadata">
-                <v-text-field label="Title" v-model="song.title" />
-                <v-text-field label="Artist" v-model="song.artist" />
-                <v-text-field label="Genre" v-model="song.genre" />
-                <v-text-field label="Album" v-model="song.album" />
                 <v-text-field
+                    :rules="[required]"
+                    label="Title"
+                    v-model="song.title"
+                />
+                <v-text-field
+                    :rules="[required]"
+                    label="Artist"
+                    v-model="song.artist"
+                />
+                <v-text-field
+                    :rules="[required]"
+                    label="Genre"
+                    v-model="song.genre"
+                />
+                <v-text-field
+                    :rules="[required]"
+                    label="Album"
+                    v-model="song.album"
+                />
+                <v-text-field
+                    :rules="[required]"
                     label="Album Image Url"
                     v-model="song.albumImageUrl"
                 />
-                <v-text-field label="YouTubeID" v-model="song.youtubeId" />
+                <v-text-field
+                    :rules="[required]"
+                    label="YouTubeID"
+                    v-model="song.youtubeId"
+                />
             </panel>
         </div>
         <div class="inputFieldsRight">
             <panel title="Song Structure">
-                <v-textarea label="Lyrics" counter v-model="song.lyrics" />
-                <v-textarea label="Tab" counter v-model="song.tab" />
+                <v-textarea
+                    :rules="[required]"
+                    label="Lyrics"
+                    counter
+                    v-model="song.lyrics"
+                />
+                <v-textarea
+                    :rules="[required]"
+                    label="Tab"
+                    counter
+                    v-model="song.tab"
+                />
             </panel>
             <v-btn @click="create" class="mt-2">Create Song</v-btn>
         </div>
@@ -45,6 +76,9 @@ export default {
     },
     data() {
         return {
+            required(v) {
+                return !!v || "Field is required";
+            },
             song: {
                 title: null,
                 artist: null,
