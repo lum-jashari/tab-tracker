@@ -2,39 +2,59 @@
     <div class="wrapper">
         <div class="inputFieldsLeft">
             <panel title="Song Metadata">
-                <v-text-field label="Title" v-model="title" />
-                <v-text-field label="Artist" v-model="artist" />
-                <v-text-field label="Genre" v-model="genre" />
-                <v-text-field label="Album" v-model="album" />
-                <v-text-field label="Album Image Url" v-model="albumImageUrl" />
-                <v-text-field label="YouTubeID" v-model="youtubeId" />
+                <v-text-field label="Title" v-model="song.title" />
+                <v-text-field label="Artist" v-model="song.artist" />
+                <v-text-field label="Genre" v-model="song.genre" />
+                <v-text-field label="Album" v-model="song.album" />
+                <v-text-field
+                    label="Album Image Url"
+                    v-model="song.albumImageUrl"
+                />
+                <v-text-field label="YouTubeID" v-model="song.youtubeId" />
             </panel>
         </div>
         <div class="inputFieldsRight">
             <panel title="Song Structure">
-                <v-textarea label="Lyrics" counter v-model="lyrics" />
-                <v-textarea label="Tab" counter v-model="tab" />
+                <v-textarea label="Lyrics" counter v-model="song.lyrics" />
+                <v-textarea label="Tab" counter v-model="song.tab" />
             </panel>
+            <v-btn @click="create" class="mt-2">Create Song</v-btn>
         </div>
     </div>
 </template>
 
 <script>
 import Panel from "@/components/Panel.vue";
+import SongsService from "@/services/SongsService";
+
 export default {
     components: {
         Panel,
     },
+    methods: {
+        async create() {
+            try {
+                await SongsService.post(this.song);
+                this.$router.push({
+                    name: "songs",
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    },
     data() {
         return {
-            title: null,
-            artist: null,
-            genre: null,
-            album: null,
-            albumImageUrl: null,
-            youtubeId: null,
-            lyrics: null,
-            tab: null,
+            song: {
+                title: null,
+                artist: null,
+                genre: null,
+                album: null,
+                albumImageUrl: null,
+                youtubeId: null,
+                lyrics: null,
+                tab: null,
+            },
         };
     },
 };
@@ -47,6 +67,8 @@ export default {
 .inputFieldsRight {
     width: 70%;
     margin-left: 1em;
+    display: flex;
+    flex-direction: column;
 }
 .wrapper {
     display: flex;
