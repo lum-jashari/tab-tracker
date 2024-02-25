@@ -21,11 +21,14 @@
             </div>
         </div>
     </v-layout>
-    <div></div>
+    <div>
+        <v-btn @click="testIfWorked">test</v-btn>
+    </div>
 </template>
 
 <script>
 import AuthenticationService from "@/services/AuthenticationService";
+import store from "../store";
 
 export default {
     data() {
@@ -36,14 +39,17 @@ export default {
         };
     },
     methods: {
+        testIfWorked() {
+            console.log(store.state.user);
+        },
         async login() {
             try {
-                await AuthenticationService.login({
+                const response = await AuthenticationService.login({
                     email: this.email,
                     password: this.password,
                 });
-                // this.$store.dispatch("setToken", response.data.token);
-                // this.$store.dispatch("setUser", response.data.user);
+                store.dispatch("setToken", response.data.token);
+                store.dispatch("setUser", response.data.user);
             } catch (error) {
                 this.error = error.response.data.error;
             }

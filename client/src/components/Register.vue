@@ -32,6 +32,7 @@
 
 <script>
 import AuthenticationService from "@/services/AuthenticationService";
+import store from "../store";
 
 export default {
     data() {
@@ -43,14 +44,13 @@ export default {
     },
     methods: {
         async register() {
-            console.log(this.email, this.password);
             try {
-                await AuthenticationService.register({
+                const response = await AuthenticationService.register({
                     email: this.email,
                     password: this.password,
                 });
-                // this.$store.dispatch("setToken", response.data.token);
-                // this.$store.dispatch("setUser", response.data.user);
+                store.dispatch("setToken", response.data.token);
+                store.dispatch("setUser", response.data.user);
             } catch (error) {
                 this.error = error.response.data.error;
             }
