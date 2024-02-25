@@ -41,6 +41,7 @@ export default {
     methods: {
         testIfWorked() {
             console.log(store.state.user);
+            console.log(store.state.token);
         },
         async login() {
             try {
