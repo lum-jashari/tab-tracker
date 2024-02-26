@@ -7,11 +7,21 @@
             <you-tube :youtubeId="song.youtubeId" />
         </div>
     </div>
+    <div class="wrapper">
+        <div class="leftPanel">
+            <tab :song="song" />
+        </div>
+        <div class="rightPanel">
+            <lyrics :song="song" />
+        </div>
+    </div>
 </template>
 
 <script>
 import Panel from "@/components/Panel.vue";
 import SongMetadata from "@/components/ViewSong/SongMetadata.vue";
+import Lyrics from "@/components/ViewSong/Lyrics.vue";
+import Tab from "@/components/ViewSong/Tab.vue";
 import YouTube from "@/components/ViewSong/YouTube.vue";
 
 import SongsService from "@/services/SongsService";
@@ -21,6 +31,8 @@ export default {
         Panel,
         SongMetadata,
         YouTube,
+        Lyrics,
+        Tab,
     },
     data() {
         return {
@@ -49,43 +61,8 @@ export default {
     flex-direction: column;
 }
 .wrapper {
-    display: flex;
-}
-.wrapper {
     margin: auto;
     min-width: 80%;
-}
-.song-title {
-    font-size: 30px;
-}
-.song-artist {
-    font-size: 24px;
-}
-.song-genre {
-    font-size: 18px;
-}
-.album-image {
-    width: 70%;
-    margin: 0 auto;
-    border-radius: 0.5em;
-}
-.songDetails {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.album {
-    flex-direction: column;
-    align-items: center;
-}
-textarea {
-    width: 100%;
-    font-family: monospace;
-    border: none;
-    height: 600px;
-    border-style: none;
-    border-color: transparent;
-    overflow: auto;
-    padding: 40px;
 }
 </style>

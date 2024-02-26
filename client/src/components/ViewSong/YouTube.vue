@@ -1,6 +1,6 @@
 <template>
     <panel title="Youtube Video" class="ml-2">
-        <LiteYouTubeEmbed :id="youtubeId" />
+        <LiteYouTubeEmbed :id="youtubeId" title="youtube_song_embed" />
     </panel>
 </template>
 

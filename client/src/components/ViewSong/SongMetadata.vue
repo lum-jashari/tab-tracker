@@ -15,11 +15,11 @@
                     class="mt-2"
                     @click="
                         navigateTo({
-                            name: 'song',
+                            name: 'songs-edit',
                             params: { songId: song.id },
                         })
                     "
-                    >View</v-btn
+                    >Edit</v-btn
                 >
             </div>
             <div class="d-flex w-50 album">
@@ -41,6 +41,11 @@ export default {
         Panel,
     },
     props: ["song"],
+    methods: {
+        navigateTo(route) {
+            this.$router.push(route);
+        },
+    },
 };
 </script>
 

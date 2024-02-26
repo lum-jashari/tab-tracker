@@ -36,4 +36,20 @@ module.exports = {
             });
         }
     },
+    async put(req, res) {
+        try {
+            const song = await Song.update(req.body, {
+                where: {
+                    id: req.params.songId,
+                },
+            });
+            res.send(req.body);
+        } catch (err) {
+            console.log("---------------" + req);
+            console.log(err);
+            res.status(500).send({
+                error: "error while updating song",
+            });
+        }
+    },
 };
