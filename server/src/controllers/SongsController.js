@@ -14,6 +14,17 @@ module.exports = {
             });
         }
     },
+    async show(req, res) {
+        try {
+            const song = await Song.findByPk(req.params.songId);
+            res.send(song);
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({
+                error: "error while fetching song",
+            });
+        }
+    },
     async post(req, res) {
         try {
             const song = await Song.create(req.body);
@@ -22,6 +33,22 @@ module.exports = {
             console.log(err);
             res.status(500).send({
                 error: "error while creating song",
+            });
+        }
+    },
+    async put(req, res) {
+        try {
+            const song = await Song.update(req.body, {
+                where: {
+                    id: req.params.songId,
+                },
+            });
+            res.send(req.body);
+        } catch (err) {
+            console.log("---------------" + req);
+            console.log(err);
+            res.status(500).send({
+                error: "error while updating song",
             });
         }
     },

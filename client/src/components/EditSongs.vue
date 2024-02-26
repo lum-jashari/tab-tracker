@@ -55,9 +55,7 @@
                 title="Error!"
                 :text="error"
             ></v-alert>
-            <v-btn @click="create" class="mt-2" color="black"
-                >Create Song</v-btn
-            >
+            <v-btn @click="save" class="mt-2" color="black">Save Song</v-btn>
         </div>
     </div>
 </template>
@@ -71,7 +69,7 @@ export default {
         Panel,
     },
     methods: {
-        async create() {
+        async save() {
             this.error = null;
             const areAllFieldsFilledIn = Object.keys(this.song).every(
                 (key) => !!this.song[key]
@@ -80,15 +78,27 @@ export default {
                 this.error = "Please fill in all fields!";
                 return;
             }
+            const songId = this.$router.currentRoute.value.params.songId;
             try {
-                await SongsService.post(this.song);
+                await SongsService.put(this.song);
                 this.$router.push({
                     name: "songs",
+                    params: {
+                        songId: songId,
+                    },
                 });
             } catch (error) {
                 console.log(error);
             }
         },
+    },
+    async mounted() {
+        try {
+            const songId = this.$router.currentRoute.value.params.songId;
+            this.song = (await SongsService.show(songId)).data;
+        } catch (error) {
+            console.log(error);
+        }
     },
     data() {
         return {

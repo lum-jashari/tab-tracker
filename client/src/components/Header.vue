@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar fixed>
+    <v-toolbar>
         <v-btn to="/">
             <v-toolbar-title class="mr-4"> TabTracker </v-toolbar-title>
         </v-btn>

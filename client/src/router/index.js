@@ -4,7 +4,8 @@ import Login from "@/components/Login.vue";
 import Hello from "@/components/Hello.vue";
 import Songs from "@/components/Songs.vue";
 import CreateSongs from "@/components/CreateSongs.vue";
-import ViewSong from "@/components/ViewSong.vue";
+import EditSongs from "@/components/EditSongs.vue";
+import ViewSong from "@/components/ViewSong/Index.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
             path: "/songs/create",
             name: "songs-create",
             component: CreateSongs,
+        },
+        {
+            path: "/song/:songId/edit",
+            name: "songs-edit",
+            component: EditSongs,
         },
     ],
 });
