@@ -14,6 +14,8 @@ module.exports = (app) => {
         AuthenticationController.register
     );
     app.post("/login", AuthenticationController.login);
+
     app.post("/songs", SongsController.post);
     app.get("/songs", SongsController.index);
+    app.get("/songs/:songId", SongsController.show);
 };
