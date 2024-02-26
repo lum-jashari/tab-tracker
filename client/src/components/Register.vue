@@ -14,7 +14,7 @@
                     <br />
                     <div class="error" v-html="error"></div>
                     <br />
-                    <v-btn class="cyan" @click="register">Register</v-btn>
+                    <v-btn color="black" @click="register">Register</v-btn>
                 </form>
             </panel>
         </div>

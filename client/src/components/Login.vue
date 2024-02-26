@@ -12,13 +12,10 @@
                 <br />
                 <div class="error" v-html="error"></div>
                 <br />
-                <v-btn class="cyan" @click="login">Log In</v-btn>
+                <v-btn color="black" @click="login">Log In</v-btn>
             </panel>
         </div>
     </v-layout>
-    <div>
-        <v-btn @click="testIfWorked">test</v-btn>
-    </div>
 </template>
 
 <script>
