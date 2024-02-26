@@ -57,10 +57,18 @@ export default {
             songs: null,
         };
     },
-    async mounted() {
-        // TODO: request to backend for all songs
-        this.songs = (await SongsService.index()).data;
+    watch: {
+        "$route.query.search": {
+            immediate: true,
+            async handler(value) {
+                this.songs = (await SongsService.index(value)).data;
+            },
+        },
     },
+    // async mounted() {
+    //     // TODO: request to backend for all songs
+    //     this.songs = (await SongsService.index()).data;
+    // },
 };
 </script>
 

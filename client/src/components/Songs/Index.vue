@@ -2,7 +2,7 @@
     <v-layout column>
         <div d-flex xs6 offset-xs3 class="wrapper">
             <songs-search-panel />
-            <songs-panel />
+            <songs-panel class="mt-2" />
         </div>
     </v-layout>
 </template>
