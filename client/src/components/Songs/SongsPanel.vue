@@ -15,6 +15,8 @@
         <div class="song" v-for="song in songs" :key="song.id">
             <v-layout>
                 <div class="w-50 songDetails">
+                    <pre>{{ song.id }}</pre>
+                    <br />
                     <div class="song-title">
                         {{ song.title }}
                     </div>

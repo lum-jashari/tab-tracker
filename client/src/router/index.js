@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Register from "@/components/Register.vue";
 import Login from "@/components/Login.vue";
-import Hello from "@/components/Hello.vue";
 import Songs from "@/components/Songs/Index.vue";
 import CreateSongs from "@/components/CreateSongs.vue";
 import EditSongs from "@/components/EditSongs.vue";
@@ -10,11 +9,6 @@ import ViewSong from "@/components/ViewSong/Index.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-        {
-            path: "/",
-            name: "root",
-            component: Hello,
-        },
         {
             path: "/register",
             name: "register",
@@ -44,6 +38,10 @@ const router = createRouter({
             path: "/song/:songId/edit",
             name: "songs-edit",
             component: EditSongs,
+        },
+        {
+            path: "/:catchAll(.*)",
+            redirect: "songs",
         },
     ],
 });
