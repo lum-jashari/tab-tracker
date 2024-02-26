@@ -16,9 +16,6 @@
 </template>
 <script>
 import store from "@/store";
-import { useRouter } from "vue-router";
-
-// const router = useRouter();
 
 export default {
     methods: {

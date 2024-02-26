@@ -26,12 +26,10 @@
                     </div>
                     <v-btn
                         class="mt-2"
-                        @click="
-                            navigateTo({
-                                name: 'song',
-                                params: { songId: song.id },
-                            })
-                        "
+                        :to="{
+                            name: 'song',
+                            params: { songId: song.id },
+                        }"
                         >View</v-btn
                     >
                 </div>
@@ -47,11 +45,6 @@
 import SongsService from "@/services/SongsService";
 
 export default {
-    methods: {
-        navigateTo(route) {
-            this.$router.push(route);
-        },
-    },
     data() {
         return {
             songs: null,

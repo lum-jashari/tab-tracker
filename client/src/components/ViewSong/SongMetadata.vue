@@ -13,12 +13,10 @@
                 </div>
                 <v-btn
                     class="mt-2"
-                    @click="
-                        navigateTo({
-                            name: 'songs-edit',
-                            params: { songId: song.id },
-                        })
-                    "
+                    :to="{
+                        name: 'songs-edit',
+                        params: { songId: song.id },
+                    }"
                     >Edit</v-btn
                 >
             </div>
@@ -37,11 +35,6 @@
 <script>
 export default {
     props: ["song"],
-    methods: {
-        navigateTo(route) {
-            this.$router.push(route);
-        },
-    },
 };
 </script>
 

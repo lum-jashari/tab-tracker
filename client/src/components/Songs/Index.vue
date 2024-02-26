@@ -17,11 +17,7 @@ export default {
         SongsPanel,
         SongsSearchPanel,
     },
-    methods: {
-        navigateTo(route) {
-            this.$router.push(route);
-        },
-    },
+    methods: {},
     data() {
         return {
             songs: null,
