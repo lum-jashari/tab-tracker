@@ -4,7 +4,7 @@ import Login from "@/components/Login.vue";
 import Hello from "@/components/Hello.vue";
 import Songs from "@/components/Songs.vue";
 import CreateSongs from "@/components/CreateSongs.vue";
-import ViewSong from "@/components/ViewSong.vue";
+import ViewSong from "@/components/ViewSong/Index.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
