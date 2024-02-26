@@ -10,8 +10,15 @@
                     type="password"
                 ></v-text-field>
                 <br />
-                <div class="error" v-html="error"></div>
-                <br />
+                <v-alert
+                    class="mb-2"
+                    v-if="error"
+                    type="error"
+                    title="Error!"
+                    :text="error"
+                ></v-alert>
+                <!-- <div class="error" v-html="error"></div>
+                <br /> -->
                 <v-btn color="black" @click="login">Log In</v-btn>
             </panel>
         </div>

@@ -12,8 +12,13 @@
                         autocomplete="new-password"
                     ></v-text-field>
                     <br />
-                    <div class="error" v-html="error"></div>
-                    <br />
+                    <v-alert
+                        class="mb-2"
+                        v-if="error"
+                        type="error"
+                        title="Error!"
+                        :text="error"
+                    ></v-alert>
                     <v-btn color="black" @click="register">Register</v-btn>
                 </form>
             </panel>
