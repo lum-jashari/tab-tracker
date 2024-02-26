@@ -21,7 +21,6 @@
 <script>
 import AuthenticationService from "@/services/AuthenticationService";
 import store from "../store";
-import Panel from "@/components/Panel.vue";
 
 export default {
     data() {
@@ -48,9 +47,6 @@ export default {
                 this.error = error.response.data.error;
             }
         },
-    },
-    components: {
-        Panel,
     },
 };
 </script>

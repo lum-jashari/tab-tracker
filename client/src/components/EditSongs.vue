@@ -61,13 +61,9 @@
 </template>
 
 <script>
-import Panel from "@/components/Panel.vue";
 import SongsService from "@/services/SongsService";
 
 export default {
-    components: {
-        Panel,
-    },
     methods: {
         async save() {
             this.error = null;

@@ -5,13 +5,11 @@
 </template>
 
 <script>
-import Panel from "@/components/Panel.vue";
 import LiteYouTubeEmbed from "vue-lite-youtube-embed";
 import "vue-lite-youtube-embed/style.css";
 
 export default {
     components: {
-        Panel,
         LiteYouTubeEmbed,
     },
     props: ["youtubeId"],
