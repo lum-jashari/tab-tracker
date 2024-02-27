@@ -12,9 +12,14 @@
                         autocomplete="new-password"
                     ></v-text-field>
                     <br />
-                    <div class="error" v-html="error"></div>
-                    <br />
-                    <v-btn class="cyan" @click="register">Register</v-btn>
+                    <v-alert
+                        class="mb-2"
+                        v-if="error"
+                        type="error"
+                        title="Error!"
+                        :text="error"
+                    ></v-alert>
+                    <v-btn color="black" @click="register">Register</v-btn>
                 </form>
             </panel>
         </div>
@@ -24,7 +29,6 @@
 <script>
 import AuthenticationService from "@/services/AuthenticationService";
 import store from "../store";
-import Panel from "@/components/Panel.vue";
 
 export default {
     data() {
@@ -43,13 +47,13 @@ export default {
                 });
                 store.dispatch("setToken", response.data.token);
                 store.dispatch("setUser", response.data.user);
+                this.$router.push({
+                    name: "songs",
+                });
             } catch (error) {
                 this.error = error.response.data.error;
             }
         },
-    },
-    components: {
-        Panel,
     },
 };
 </script>

@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import Panel from "@/components/Panel.vue";
 import SongMetadata from "@/components/ViewSong/SongMetadata.vue";
 import Lyrics from "@/components/ViewSong/Lyrics.vue";
 import Tab from "@/components/ViewSong/Tab.vue";
@@ -28,7 +27,6 @@ import SongsService from "@/services/SongsService";
 
 export default {
     components: {
-        Panel,
         SongMetadata,
         YouTube,
         Lyrics,

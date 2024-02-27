@@ -9,10 +9,12 @@ import * as directives from "vuetify/directives";
 import router from "./router";
 import store from "./store";
 
+import Panel from "@/components/globals/Panel.vue";
+
 const vuetify = createVuetify({
     components,
     directives,
 });
 
 const app = createApp(App);
-app.use(router).use(vuetify).use(store).mount("#app");
+app.use(router).use(vuetify).use(store).component("panel", Panel).mount("#app");

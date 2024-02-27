@@ -2,10 +2,28 @@ const { Song } = require("../models");
 
 module.exports = {
     async index(req, res) {
+        const { Op } = require("sequelize");
         try {
-            const songs = await Song.findAll({
-                limit: 10,
-            });
+            let songs = null;
+            const search = req.query.search;
+            if (search) {
+                console.log("inside");
+                songs = await Song.findAll({
+                    where: {
+                        [Op.or]: ["title", "artist", "genre", "album"].map(
+                            (key) => ({
+                                [key]: {
+                                    [Op.like]: `%${search}%`,
+                                },
+                            })
+                        ),
+                    },
+                });
+            } else {
+                songs = await Song.findAll({
+                    limit: 10,
+                });
+            }
             res.send(songs);
         } catch (err) {
             console.log(err);
@@ -38,7 +56,7 @@ module.exports = {
     },
     async put(req, res) {
         try {
-            const song = await Song.update(req.body, {
+            await Song.update(req.body, {
                 where: {
                     id: req.params.songId,
                 },

@@ -10,21 +10,24 @@
                     type="password"
                 ></v-text-field>
                 <br />
-                <div class="error" v-html="error"></div>
-                <br />
-                <v-btn class="cyan" @click="login">Log In</v-btn>
+                <v-alert
+                    class="mb-2"
+                    v-if="error"
+                    type="error"
+                    title="Error!"
+                    :text="error"
+                ></v-alert>
+                <!-- <div class="error" v-html="error"></div>
+                <br /> -->
+                <v-btn color="black" @click="login">Log In</v-btn>
             </panel>
         </div>
     </v-layout>
-    <div>
-        <v-btn @click="testIfWorked">test</v-btn>
-    </div>
 </template>
 
 <script>
 import AuthenticationService from "@/services/AuthenticationService";
 import store from "../store";
-import Panel from "@/components/Panel.vue";
 
 export default {
     data() {
@@ -47,13 +50,13 @@ export default {
                 });
                 store.dispatch("setToken", response.data.token);
                 store.dispatch("setUser", response.data.user);
+                this.$router.push({
+                    name: "songs",
+                });
             } catch (error) {
                 this.error = error.response.data.error;
             }
         },
-    },
-    components: {
-        Panel,
     },
 };
 </script>

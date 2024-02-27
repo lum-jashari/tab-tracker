@@ -13,14 +13,30 @@
                 </div>
                 <v-btn
                     class="mt-2"
-                    @click="
-                        navigateTo({
-                            name: 'songs-edit',
-                            params: { songId: song.id },
-                        })
-                    "
+                    :to="{
+                        name: 'songs-edit',
+                        params() {
+                            return { songId: song.id };
+                        },
+                    }"
                     >Edit</v-btn
                 >
+                <div>
+                    <v-btn
+                        class="mt-2"
+                        @click="bookmark"
+                        color="red"
+                        v-if="isUserLoggedIn && !isBookmarked"
+                        >Bookmark</v-btn
+                    >
+                    <v-btn
+                        class="mt-2"
+                        @click="unBookmark"
+                        color="red"
+                        v-if="isUserLoggedIn && isBookmarked"
+                        >UnBookmark</v-btn
+                    >
+                </div>
             </div>
             <div class="d-flex w-50 album">
                 <img
@@ -35,15 +51,54 @@
 </template>
 
 <script>
-import Panel from "@/components/Panel.vue";
+import store from "@/store";
+import BookmarksService from "@/services/BookmarksService";
+
 export default {
-    components: {
-        Panel,
+    data() {
+        return {
+            isBookmarked: false,
+        };
     },
     props: ["song"],
+    computed: {
+        isUserLoggedIn() {
+            return store.state.isUserLoggedIn;
+        },
+    },
+    async mounted() {
+        if (!this.isUserLoggedIn) {
+            return;
+        }
+        try {
+            const bookmark = (
+                await BookmarksService.index({
+                    songId: this.$route.params.songId,
+                    userId: store.state.user.id,
+                })
+            ).data;
+            this.isBookmarked = !!bookmark;
+        } catch (error) {
+            console.log(error);
+        }
+    },
     methods: {
-        navigateTo(route) {
-            this.$router.push(route);
+        async bookmark() {
+            try {
+                await BookmarksService.post({
+                    songId: this.$route.params.songId,
+                    userId: store.state.user.id,
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async unBookmark() {
+            try {
+                await BookmarksService.delete(this.$route.params.songId);
+            } catch (error) {
+                console.log(error);
+            }
         },
     },
 };
