@@ -11,6 +11,7 @@
             <v-btn to="/register" v-if="!userLoggedIn"> Sign Up </v-btn>
             <v-btn @click="logout" v-if="userLoggedIn"> Log Out </v-btn>
         </div>
+        <h2 v-if="user" class="ml-auto mr-5">{{ user.email.slice(0, 4) }}</h2>
     </v-toolbar>
 </template>
 <script>
@@ -27,6 +28,9 @@ export default {
     computed: {
         userLoggedIn() {
             return store.state.isUserLoggedIn;
+        },
+        user() {
+            return store.state.user;
         },
     },
 };
