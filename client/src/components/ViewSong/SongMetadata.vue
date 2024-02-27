@@ -87,7 +87,7 @@ export default {
             try {
                 await BookmarksService.post({
                     songId: this.$route.params.songId,
-                    userId: store.state.user.id,
+                    userId: store.state.user.id.toString(),
                 });
             } catch (error) {
                 console.log(error);

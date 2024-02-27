@@ -4,7 +4,6 @@ module.exports = {
     async index(req, res) {
         try {
             const { songId, userId } = req.query;
-            console.log(req.query);
 
             const bookmark = await Bookmark.findOne({
                 where: {
@@ -12,7 +11,6 @@ module.exports = {
                     UserId: userId,
                 },
             });
-            console.log(bookmark);
             res.send(bookmark);
         } catch (err) {
             console.log(err);
@@ -23,7 +21,7 @@ module.exports = {
     },
     async post(req, res) {
         try {
-            const { songId, userId } = req.body;
+            const { songId, userId } = req.body.params;
             const bookmark = await Bookmark.findOne({
                 where: {
                     SongId: songId,
