@@ -22,8 +22,9 @@ import SongMetadata from "@/components/ViewSong/SongMetadata.vue";
 import Lyrics from "@/components/ViewSong/Lyrics.vue";
 import Tab from "@/components/ViewSong/Tab.vue";
 import YouTube from "@/components/ViewSong/YouTube.vue";
-
 import SongsService from "@/services/SongsService";
+import SongHistoryService from "@/services/SongHistoryService";
+import store from "@/store";
 
 export default {
     components: {
@@ -42,9 +43,24 @@ export default {
             console.log(this.song);
         },
     },
+    computed: {
+        isUserLoggedIn() {
+            return store.state.isUserLoggedIn;
+        },
+        user() {
+            return store.state.user;
+        },
+    },
     async mounted() {
         const songId = this.$router.currentRoute.value.params.songId;
         this.song = (await SongsService.show(songId)).data;
+
+        if (this.isUserLoggedIn) {
+            SongHistoryService.post({
+                songId: songId,
+                userId: this.user.id.toString(),
+            });
+        }
     },
 };
 </script>

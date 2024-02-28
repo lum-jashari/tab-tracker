@@ -1,5 +1,9 @@
 <template>
     <v-layout column>
+        <div d-flex xs6 offset-xs3 class="wrapper mr-2" v-if="isUserLoggedIn">
+            <songs-bookmarks />
+            <recently-viewed-songs class="mt-2" />
+        </div>
         <div d-flex xs6 offset-xs3 class="wrapper">
             <songs-search-panel />
             <songs-panel class="mt-2" />
@@ -10,14 +14,24 @@
 <script>
 import SongsPanel from "./SongsPanel.vue";
 import SongsSearchPanel from "./SongsSearchPanel.vue";
+import RecentlyViewedSongs from "./RecentlyViewedSongs.vue";
+import SongsBookmarks from "./SongsBookmarks.vue";
 import SongsService from "@/services/SongsService";
+
+import store from "@/store";
 
 export default {
     components: {
         SongsPanel,
         SongsSearchPanel,
+        SongsBookmarks,
+        RecentlyViewedSongs,
     },
-    methods: {},
+    computed: {
+        isUserLoggedIn() {
+            return store.state.isUserLoggedIn;
+        },
+    },
     data() {
         return {
             songs: null,
@@ -30,31 +44,9 @@ export default {
 </script>
 
 <style scoped>
-.song {
-    padding: 20px;
-    height: 330px;
-    overflow: hidden;
-}
 .wrapper {
-    margin: auto;
-    min-width: 80%;
-}
-.song-title {
-    font-size: 30px;
-}
-.song-artist {
-    font-size: 24px;
-}
-.song-genre {
-    font-size: 18px;
-}
-.album-image {
-    width: 70%;
-    margin: 0 auto;
-}
-.songDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>

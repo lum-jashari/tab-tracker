@@ -74,7 +74,6 @@ export default {
             const bookmark = (
                 await BookmarksService.index({
                     songId: this.$route.params.songId,
-                    userId: store.state.user.id,
                 })
             ).data;
             this.isBookmarked = !!bookmark;
@@ -87,7 +86,6 @@ export default {
             try {
                 await BookmarksService.post({
                     songId: this.$route.params.songId,
-                    userId: store.state.user.id.toString(),
                 });
             } catch (error) {
                 console.log(error);
@@ -105,10 +103,6 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-    margin: auto;
-    min-width: 80%;
-}
 .song-title {
     font-size: 30px;
 }

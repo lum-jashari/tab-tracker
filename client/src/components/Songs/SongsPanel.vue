@@ -60,10 +60,6 @@ export default {
             },
         },
     },
-    // async mounted() {
-    //     // TODO: request to backend for all songs
-    //     this.songs = (await SongsService.index()).data;
-    // },
 };
 </script>
 
@@ -72,10 +68,6 @@ export default {
     padding: 20px;
     height: 330px;
     overflow: hidden;
-}
-.wrapper {
-    margin: auto;
-    min-width: 80%;
 }
 .song-title {
     font-size: 30px;

@@ -1,17 +1,29 @@
-const { Bookmark } = require("../models");
+const { Bookmark, Song, User } = require("../models");
+const _ = require("lodash");
 
 module.exports = {
     async index(req, res) {
         try {
-            const { songId, userId } = req.query;
-
-            const bookmark = await Bookmark.findOne({
-                where: {
-                    SongId: songId,
-                    UserId: userId,
-                },
+            const userId = req.user.id;
+            const { songId } = req.query;
+            const where = {
+                UserId: userId,
+            };
+            if (songId) {
+                where.SongId = songId;
+            }
+            console.log(where);
+            console.log(where);
+            console.log(where);
+            const bookmarks = await Bookmark.findAll({
+                where: where,
+                include: [
+                    {
+                        model: Song,
+                    },
+                ],
             });
-            res.send(bookmark);
+            res.send(bookmarks);
         } catch (err) {
             console.log(err);
             res.status(500).send({

@@ -63,7 +63,6 @@ module.exports = {
             });
             res.send(req.body);
         } catch (err) {
-            console.log("---------------" + req);
             console.log(err);
             res.status(500).send({
                 error: "error while updating song",
