@@ -62,9 +62,6 @@ export default {
 </script>
 
 <style scoped>
-.error {
-    color: red;
-}
 .wrapper {
     margin: auto;
     min-width: 50%;

@@ -130,8 +130,4 @@ export default {
 .wrapper {
     display: flex;
 }
-
-.error {
-    color: red;
-}
 </style>

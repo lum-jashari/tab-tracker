@@ -17,13 +17,11 @@ module.exports = {
                     break;
                 case "password":
                     res.status(400).send({
-                        error: `
-                                      The password must contain only the following characters:
-                                      <br>
-                                      1. Upper-case letters, lower-case letters and numerics
-                                      <br>
-                                      2. It must be at least 8chars  and less that 32chars long
-                                `,
+                        error: `The password must contain only the following characters:
+                                <br>
+                                1. Upper-case letters, lower-case letters and numerics
+                                <br>
+                                2. It must be at least 8chars  and less that 32chars long`,
                     });
                     break;
                 default:
