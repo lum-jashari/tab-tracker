@@ -39,6 +39,10 @@ To run this app locally, follow these steps:
 
 5. Open your web browser and navigate to `http://localhost:3000` to view the app.
 
+## Screenshots
+
+![vue-music-app screenshot](client/public/vue-music-app.jpg?raw=true "Vue Music App")
+
 ## Usage
 
 Feel free to explore the codebase and experiment with Vue.js concepts. This app serves as a learning resource, so don't hesitate to make changes, add new features, or refactor existing code to deepen your understanding of the **SEVN** stack.
